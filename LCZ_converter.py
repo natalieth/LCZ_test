@@ -29,6 +29,7 @@ from osgeo import gdal
 from qgiscombomanager import *
 # Initialize Qt resources from file resources.py
 import resources
+import webbrowser
 import qgis.analysis
 # Import the code for the dialog
 from LCZ_converter_dialog import LCZ_testDialog
@@ -80,10 +81,6 @@ class LCZ_test:
         RasterLayerCombo(self.dlg.comboBox, initLayer="")
 
         self.folderPath = 'None'
-        self.degree = 5.0
-        self.dsm = None
-        self.dem = None
-        self.scale = None
         self.steps = 0
 
         # Declare instance attributes
@@ -176,6 +173,12 @@ class LCZ_test:
             self.folderPath = self.fileDialog.selectedFiles()
             self.dlg.lineEdit_2.setText(self.folderPath[0])
 
+    def read_table(self): 
+        table = QtGui.QTableWidget(9, 17, self)
+        for row in range(9):
+            for col in range(17):
+                table.setItem(row, col, QtGui.QTableWidgetItem("(%d, %d)" % (row, col)))
+
     def start_progress(self):
         self.steps = 0
         poly = self.layerComboManagerPolygrid.getLayer()
@@ -203,17 +206,17 @@ class LCZ_test:
         if self.folderPath == 'None':
             QMessageBox.critical(None, "Error", "Select a valid output folder")
             return
-        
+        elf.dlg.tableWidget.setText(self.read_table)
         # self.iface.messageBar().pushMessage("test: ", str(test))
 
         self.startWorker(lc_grid, poly, vlayer, prov, fields, idx, dir_poly, self.iface,
-                         self.plugin_dir, self.folderPath, self.dlg)
+                         self.plugin_dir, self.folderPath, self.dlg,self.read_table)
         
     def startWorker(self, lc_grid, poly, vlayer, prov, fields, idx, dir_poly, iface, plugin_dir,
-                    folderPath, dlg):
+                    folderPath, dlg, table):
 
         worker = Worker(lc_grid, poly, vlayer, prov, fields, idx, dir_poly, iface,
-                        plugin_dir, folderPath, dlg)
+                        plugin_dir, folderPath, dlg, table)
 
         self.dlg.runButton.setText('Cancel')
         self.dlg.runButton.clicked.disconnect()

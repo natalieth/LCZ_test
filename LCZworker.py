@@ -20,7 +20,7 @@ class Worker(QtCore.QObject):
     progress = QtCore.pyqtSignal()
 
     def __init__(self, lc_grid, poly, vlayer, prov, fields, idx, dir_poly, iface, plugin_dir,
-                 folderPath, dlg):
+                 folderPath, dlg,table):
 
         QtCore.QObject.__init__(self)
         self.killed = False
@@ -101,11 +101,11 @@ class Worker(QtCore.QObject):
                     # save to file
                     header = 'Wd Paved Buildings EvergreenTrees DecidiousTrees Grass Baresoil Water'
                     numformat = '%3d %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f'
-                    arr = lczfractions["lcz_frac"]
-                    np.savetxt('LCFG_anisotropic_result_' + str(f.attributes()[self.idx]) + '.txt', arr,delimiter=' ', header=header, comments='')
-#                    np.savetxt(self.folderPath[0] + '/' + pre + '_' + 'LCFG_anisotropic_result_' + str(f.attributes()[self.idx]) + '.txt', arr,fmt=numformat, delimiter=' ', header=header, comments='')
+                    arr = np.concatenate((lczfractions["lcz_frac"], lczfractions["lcz_count"]), axis=1)
+#                    np.savetxt('/data/LCFG_anisotropic_result_' + str(f.attributes()[self.idx]) + '.txt', arr,delimiter=' ', header=header, comments='')
+                    np.savetxt(self.folderPath[0] + '/' + pre + '_' + 'LCFG_anisotropic_result_' + str(f.attributes()[self.idx]) + '.txt', arr,fmt=numformat, delimiter=' ', header=header, comments='')
 
-
+                    del arr
                     arr2 = np.array([f.attributes()[self.idx], lczfractions["lcz_frac"][0], lczfractions["lcz_frac"][1],
                                       lczfractions["lcz_frac"][2], lczfractions["lcz_frac"][3], lczfractions["lcz_frac"][4],
                                      lczfractions["lcz_frac"][5], lczfractions["lcz_frac"][6]])
@@ -197,7 +197,7 @@ class Worker(QtCore.QObject):
                     arr[0, x] -= diff
                     break
 
-        landcoverresult["lc_frac_all"] = arr
+        landcoverresult["lcz_frac"] = arr
 
         return landcoverresult
 
