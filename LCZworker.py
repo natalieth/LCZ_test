@@ -20,7 +20,7 @@ class Worker(QtCore.QObject):
     progress = QtCore.pyqtSignal()
 
     def __init__(self, lc_grid, poly, vlayer, prov, fields, idx, dir_poly, iface, plugin_dir,
-                 folderPath, dlg,table):
+                 folderPath, dlg):
 
         QtCore.QObject.__init__(self)
         self.killed = False
@@ -72,9 +72,7 @@ class Worker(QtCore.QObject):
                 provider = self.lc_grid.dataProvider()
                 filePath_lc_grid = str(provider.dataSourceUri())
                 
-                gdalruntextlc_grid = gdalwarp_os_dep + ' -dstnodata -9999 -q -overwrite -cutline ' + self.dir_poly + \
-                                           ' -crop_to_cutline -of GTiff "' + filePath_lc_grid + '" "' + \
-                                           self.plugin_dir + '/data/clipdsm.tif"'
+                gdalruntextlc_grid = gdalwarp_os_dep + ' -dstnodata -9999 -q -overwrite -cutline ' + self.dir_poly + ' -crop_to_cutline -of GTiff "' + filePath_lc_grid + '" "' +        self.plugin_dir + '/data/clipdsm.tif"'
 
                 if sys.platform == 'win32':
                     si = subprocess.STARTUPINFO()
@@ -96,19 +94,19 @@ class Worker(QtCore.QObject):
 
                 if cal == 1:
                     lczfractions = LCZ_fractions(lc_grid_array,self.dlg)
-#                    lczfractions = self.resultcheck(lczfractions)
+                    lczfractions = self.resultcheck(lczfractions)
 
-                    # save to file
-                    header = 'Wd Paved Buildings EvergreenTrees DecidiousTrees Grass Baresoil Water'
-                    numformat = '%3d %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f'
-                    arr = np.concatenate((lczfractions["lcz_frac"], lczfractions["lcz_count"]), axis=1)
-#                    np.savetxt('/data/LCFG_anisotropic_result_' + str(f.attributes()[self.idx]) + '.txt', arr,delimiter=' ', header=header, comments='')
-                    np.savetxt(self.folderPath[0] + '/' + pre + '_' + 'LCFG_anisotropic_result_' + str(f.attributes()[self.idx]) + '.txt', arr,fmt=numformat, delimiter=' ', header=header, comments='')
-
-                    del arr
-                    arr2 = np.array([f.attributes()[self.idx], lczfractions["lcz_frac"][0], lczfractions["lcz_frac"][1],
-                                      lczfractions["lcz_frac"][2], lczfractions["lcz_frac"][3], lczfractions["lcz_frac"][4],
-                                     lczfractions["lcz_frac"][5], lczfractions["lcz_frac"][6]])
+#                    # save to file
+#                    header = 'Wd Paved Buildings EvergreenTrees DecidiousTrees Grass Baresoil Water'
+#                    numformat = '%3d %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f'
+#                    arr = np.concatenate((lczfractions["lcz_frac"], lczfractions["lcz_count"]), axis=1)
+##                    np.savetxt('/data/LCFG_anisotropic_result_' + str(f.attributes()[self.idx]) + '.txt', arr,delimiter=' ', header=header, comments='')
+#                    np.savetxt(self.folderPath[0] + '/' + pre + '_' + 'LCFG_anisotropic_result_' + str(f.attributes()[self.idx]) + '.txt', arr,fmt=numformat, delimiter=' ', header=header, comments='')
+#
+#                    del arr
+                    arr2 = np.array([f.attributes()[self.idx], lczfractions["lc_frac_all"][0,0], lczfractions["lc_frac_all"][0,1],
+                                      lczfractions["lc_frac_all"][0,2], lczfractions["lc_frac_all"][0,3], lczfractions["lc_frac_all"][0,4],
+                                     lczfractions["lc_frac_all"][0,5], lczfractions["lc_frac_all"][0,6]])
 
                     arrmat = np.vstack([arrmat, arr2])
 
@@ -120,16 +118,15 @@ class Worker(QtCore.QObject):
             header = 'ID Paved Buildings EvergreenTrees DecidiousTrees Grass Baresoil Water'
             numformat = '%3d %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f'
             arrmatsave = arrmat[1: arrmat.shape[0], :]
-            np.savetxt(self.folderPath[0] + '/' +'LCFG_isotropic.txt', arrmatsave,
-                                fmt=numformat, delimiter=' ', header=header, comments='')
+#            np.savetxt(self.folderPath[0] + '/' +'LCFG_isotropic.txt', arrmatsave, fmt=numformat, delimiter=' ', header=header, comments='')
 
             #when files are saved through the np.savetext method the values are rounded according to the information in
             #the numformat variable. This can cause the total sum of the values in a line in the text file to not be 1
             #this method reads through the text file after it has been generated to make sure every line has a sum of 1.
             self.textFileCheck(pre)
 
-            if self.dlg.checkbox_2.isChecked():
-                self.addattributes(self.vlayer, arrmatsave, header, pre)
+#            if self.dlg.checkbox_2.isChecked():
+            self.addattributes(self.vlayer, arrmatsave, header, pre)
 
             if self.killed is False:
                 self.progress.emit()
@@ -182,10 +179,10 @@ class Worker(QtCore.QObject):
 
     def resultcheck(self, landcoverresult):
         total = 0.
-        arr = landcoverresult["lcz_frac"]
+        arr = landcoverresult["lc_frac_all"]
 
-        for x in range(0, len(arr)):
-            total += arr[x]
+        for x in range(0, len(arr[0])):
+            total += arr[0, x]
 
         if total != 1.0:
             diff = total - 1.0
@@ -197,10 +194,10 @@ class Worker(QtCore.QObject):
                     arr[0, x] -= diff
                     break
 
-        landcoverresult["lcz_frac"] = arr
+        landcoverresult["lc_frac_all"] = arr
 
         return landcoverresult
-
+    
     def textFileCheck(self, pre):
         try:
             file_path = self.folderPath[0] + '/' + pre + '_' + 'LCFG_isotropic.txt'
