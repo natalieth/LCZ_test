@@ -32,6 +32,7 @@ def LCZ_fractions(lc_grid,dlg):
         waterx = float(dlg.tableWidget.item(6,l).text())
         if not(((pavedx + buildingsx+ grassx + dtreesx + etreesx +bsoilx +waterx)>0.9999) and((pavedx + buildingsx+ grassx + dtreesx + etreesx +bsoilx +waterx)<1.00001)):
             QgsMessageLog.logMessage("Fractions in LCZ " + str(LCZs[l])+ " were " + str((pavedx + buildingsx+ grassx + dtreesx + etreesx +bsoilx +waterx)) + " and do not add up to 1.0", level=QgsMessageLog.CRITICAL)
+            break
         pavedf[l] = pavedx*lczfrac[l]
         grassf[l] = grassx*lczfrac[l]
         buildingsf[l] = buildingsx*lczfrac[l]

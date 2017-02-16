@@ -95,15 +95,7 @@ class Worker(QtCore.QObject):
                 if cal == 1:
                     lczfractions = LCZ_fractions(lc_grid_array,self.dlg)
                     lczfractions = self.resultcheck(lczfractions)
-
-#                    # save to file
-#                    header = 'Wd Paved Buildings EvergreenTrees DecidiousTrees Grass Baresoil Water'
-#                    numformat = '%3d %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f'
-#                    arr = np.concatenate((lczfractions["lcz_frac"], lczfractions["lcz_count"]), axis=1)
-##                    np.savetxt('/data/LCFG_anisotropic_result_' + str(f.attributes()[self.idx]) + '.txt', arr,delimiter=' ', header=header, comments='')
-#                    np.savetxt(self.folderPath[0] + '/' + pre + '_' + 'LCFG_anisotropic_result_' + str(f.attributes()[self.idx]) + '.txt', arr,fmt=numformat, delimiter=' ', header=header, comments='')
-#
-#                    del arr
+                    
                     arr2 = np.array([f.attributes()[self.idx], lczfractions["lc_frac_all"][0,0], lczfractions["lc_frac_all"][0,1],
                                       lczfractions["lc_frac_all"][0,2], lczfractions["lc_frac_all"][0,3], lczfractions["lc_frac_all"][0,4],
                                      lczfractions["lc_frac_all"][0,5], lczfractions["lc_frac_all"][0,6]])
