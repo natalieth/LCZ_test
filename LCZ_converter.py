@@ -34,6 +34,7 @@ import qgis.analysis
 # Import the code for the dialog
 from LCZ_converter_dialog import LCZ_testDialog
 from LCZworker import Worker
+import numpy as np
 
 class LCZ_test:
     """QGIS Plugin Implementation."""
@@ -66,6 +67,7 @@ class LCZ_test:
 
         # Create the dialog (after translation) and keep reference
         self.dlg = LCZ_testDialog()
+        self.dlg.pushButton.clicked.connect(self.LCZ_selection)
         self.dlg.runButton.clicked.connect(self.start_progress)
         self.dlg.pushButtonSelect.clicked.connect(self.folder_path)
         self.dlg.tableWidget.setEnabled(False)
@@ -172,7 +174,37 @@ class LCZ_test:
         if result == 1:
             self.folderPath = self.fileDialog.selectedFiles()
             self.dlg.lineEdit_2.setText(self.folderPath[0])
+    def LCZ_selection(self):
+        lcz_grid = self.layerComboManagerLCgrid.getLayer()
+        provider = lcz_grid.dataProvider()
+        filepath_lc_grid= str(provider.dataSourceUri())
+        gdal_lc_grid = gdal.Open(filepath_lc_grid)
+        lcz_grid = gdal_lc_grid.ReadAsArray().astype(np.float)
+        LCZs = [1.,2.,3.,4.,5.,6.,7.,8.,9.,10.,101.,102.,103.]
+        countlcz = np.zeros(len(LCZs))
+        for l in range(len(LCZs)): 
+            countlcz[l] = np.count_nonzero(lcz_grid[lcz_grid==LCZs[l]])
+        sortcountLCZ = [(str(int(LCZs))) for countlcz, LCZs in sorted(zip(countlcz, LCZs),reverse=True)]
+        self.dlg.comboBox_3.insertItems(0,sortcountLCZ)
+        self.dlg.comboBox_4.insertItems(0,sortcountLCZ)
+        self.dlg.comboBox_5.insertItems(0,sortcountLCZ)
+        self.dlg.comboBox_6.insertItems(0,sortcountLCZ)
+        self.dlg.comboBox_7.insertItems(0,sortcountLCZ)
+        self.dlg.comboBox_8.insertItems(0,sortcountLCZ)
+        self.dlg.comboBox_15.insertItems(0,sortcountLCZ)
+        self.dlg.comboBox_16.insertItems(0,sortcountLCZ)
+        self.dlg.comboBox_3.activated.connect(self.pervious_select)
 
+    def pervious_select(self):
+        urbanchoices = ['100% grass','100% evergreen trees','100% decidious trees','100% bare soil','100% water','50% grass, 25% dec. trees, 25% ev. trees','Each 20%']
+        treechoices = ['100% evergreen', '100% decidious', '50% evergreen, 50% decidious','30% evergreen, 70% decidious','70% evergreen, 30% decidious']
+        if (int(self.dlg.comboBox_3.currentText())<=10):
+            self.dlg.combobox_9.set('')
+            self.dlg.comboBox_9.addItems(urbanchoices)
+        if (int(self.dlg.comboBox_3.currentText())>100 and int(self.dlg.comboBox_3.currentText())<=103):
+            self.dlg.combobox_9.set('')
+            self.dlg.comboBox_9.addItems(treechoices)
+        
     def start_progress(self):
         self.steps = 0
         poly = self.layerComboManagerPolygrid.getLayer()

@@ -14,6 +14,12 @@ def LCZ_fractions(lc_grid,dlg):
     etreesf = np.zeros(len(LCZs))
     bsoilf = np.zeros(len(LCZs))
     waterf = np.zeros(len(LCZs))
+    bzh =  np.zeros(len(LCZs))
+    bzd =  np.zeros(len(LCZs))
+    bz0 =  np.zeros(len(LCZs))
+    vzh =  np.zeros(len(LCZs))
+    vzd =  np.zeros(len(LCZs))
+    vz0 =  np.zeros(len(LCZs))
     lczraster = np.round(lc_grid)
     countlcz = np.zeros(len(LCZs))
     lczfrac = np.zeros(len(LCZs))
@@ -33,6 +39,13 @@ def LCZ_fractions(lc_grid,dlg):
         if not(((pavedx + buildingsx+ grassx + dtreesx + etreesx +bsoilx +waterx)>0.9999) and((pavedx + buildingsx+ grassx + dtreesx + etreesx +bsoilx +waterx)<1.00001)):
             QgsMessageLog.logMessage("Fractions in LCZ " + str(LCZs[l])+ " were " + str((pavedx + buildingsx+ grassx + dtreesx + etreesx +bsoilx +waterx)) + " and do not add up to 1.0", level=QgsMessageLog.CRITICAL)
             break
+        bzh[l] = float(dlg.tableWidget.item(7,l).text())*lczfrac[l]
+        bzd[l] = float(dlg.tableWidget.item(8,l).text())*lczfrac[l]
+        bz0[l] = float(dlg.tableWidget.item(9,l).text())*lczfrac[l]    
+        vzh[l] = float(dlg.tableWidget.item(10,l).text())*lczfrac[l]
+        vzd[l] = float(dlg.tableWidget.item(11,l).text())*lczfrac[l]
+        vz0[l] = float(dlg.tableWidget.item(12,l).text())*lczfrac[l]
+        
         pavedf[l] = pavedx*lczfrac[l]
         grassf[l] = grassx*lczfrac[l]
         buildingsf[l] = buildingsx*lczfrac[l]
@@ -40,6 +53,8 @@ def LCZ_fractions(lc_grid,dlg):
         etreesf[l] = etreesx*lczfrac[l]
         bsoilf[l] = bsoilx*lczfrac[l]
         waterf[l] = waterx*lczfrac[l]
+        
+        
     lc_frac_all[0,0] = pavedf.sum(axis=0)
     lc_frac_all[0,1] = buildingsf.sum(axis=0)
     lc_frac_all[0,4] = grassf.sum(axis=0)
