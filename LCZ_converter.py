@@ -67,22 +67,32 @@ class LCZ_test:
 
         # Create the dialog (after translation) and keep reference
         self.dlg = LCZ_testDialog()
-        self.dlg.pushButton.clicked.connect(self.LCZ_selection)
-        self.dlg.pushButton_2.clicked.connect(self.updatetable)
+        self.dlg.radioButton_2.toggled.connect(self.LCZ_selection)
         self.dlg.runButton.clicked.connect(self.start_progress)
         self.dlg.pushButtonSelect.clicked.connect(self.folder_path)
         self.dlg.tableWidget.setEnabled(False)
         self.dlg.checkBox.toggled.connect(self.text_enable)
+        self.dlg.radioButton.toggled.connect(self.allclass)
         self.dlg.progressBar.setValue(0)
         self.fileDialog = QFileDialog()
         self.fileDialog.setFileMode(4)
         self.fileDialog.setAcceptMode(1)  # Save
+        if self.dlg.radioButton_2.isChecked():
+            self.dlg.pushButton_2.clicked.connect(self.updatetable)
+        if self.dlg.radioButton.isChecked():
+            self.dlg.pushButton_2.clicked.connect(self.updatetable2)
+#        self.dlg.pushButton_2.clicked.connect(self.bla)
+
         
         self.layerComboManagerPolygrid = VectorLayerCombo(self.dlg.comboBox_2)
         fieldgen = VectorLayerCombo(self.dlg.comboBox_2, initLayer="", options={"geomType": QGis.Polygon})
         self.layerComboManagerLCgrid = RasterLayerCombo(self.dlg.comboBox)
         RasterLayerCombo(self.dlg.comboBox, initLayer="")
-
+        self.urbanchoices = ['100% grass','100% decidious trees','100% evergreen trees','100% bare soil','100% water','50% grass, 25% dec. trees, 25% ev. trees','Each 20%']
+        self.treechoices = ['100% evergreen', '100% decidious', '50% evergreen, 50% decidious','30% evergreen, 70% decidious','70% evergreen, 30% decidious']
+        self.LCZs = [1.,2.,3.,4.,5.,6.,7.,8.,9.,10.,101.,102.,103.]
+        self.heightfr = ['No trees','0 - 5m','5 - 10m','10 - 15m','15 - 20m','> 20m']
+        
         self.folderPath = 'None'
         self.steps = 0
 
@@ -163,7 +173,11 @@ class LCZ_test:
             self.iface.removeToolBarIcon(action)
         # remove the toolbar
         del self.toolbar
-        
+    def bla(self):
+        if self.dlg.radioButton_2.isChecked():
+            self.dlg.pushButton_2.clicked.connect(self.updatetable)
+        if self.dlg.radioButton.isChecked():
+            self.dlg.pushButton_2.clicked.connect(self.updatetable2)
     def text_enable(self):
         if self.dlg.checkBox.isChecked():
             self.dlg.tableWidget.setEnabled(True)
@@ -175,46 +189,92 @@ class LCZ_test:
         if result == 1:
             self.folderPath = self.fileDialog.selectedFiles()
             self.dlg.lineEdit_2.setText(self.folderPath[0])
-    def LCZ_selection(self):
-        lcz_grid = self.layerComboManagerLCgrid.getLayer()
-        provider = lcz_grid.dataProvider()
-        filepath_lc_grid= str(provider.dataSourceUri())
-        gdal_lc_grid = gdal.Open(filepath_lc_grid)
-        lcz_grid = gdal_lc_grid.ReadAsArray().astype(np.float)
-        LCZs = [1.,2.,3.,4.,5.,6.,7.,8.,9.,10.,101.,102.,103.]
-        heightfr = [str(0),str(0.1),str(0.25),str(0.5),str(1.0),str(1.5),str(2.0)]
-        countlcz = np.zeros(len(LCZs))
-        for l in range(len(LCZs)): 
-            countlcz[l] = np.count_nonzero(lcz_grid[lcz_grid==LCZs[l]])
-        sortcountLCZ = [(str(int(LCZs))) for countlcz, LCZs in sorted(zip(countlcz, LCZs),reverse=True)]
-        self.dlg.comboBox_3.insertItems(0,sortcountLCZ)
-        self.dlg.comboBox_4.insertItems(0,sortcountLCZ)
-        self.dlg.comboBox_5.insertItems(0,sortcountLCZ)
-        self.dlg.comboBox_6.insertItems(0,sortcountLCZ)
-        self.dlg.comboBox_7.insertItems(0,sortcountLCZ)
-        self.dlg.comboBox_8.insertItems(0,sortcountLCZ)
-        self.dlg.comboBox_15.insertItems(0,sortcountLCZ)
-        self.dlg.comboBox_16.insertItems(0,sortcountLCZ)
-        self.dlg.comboBox_19.insertItems(0,heightfr)
-        self.dlg.comboBox_20.insertItems(0,heightfr)
-        self.dlg.comboBox_21.insertItems(0,heightfr)
-        self.dlg.comboBox_22.insertItems(0,heightfr)
-        self.dlg.comboBox_23.insertItems(0,heightfr)
-        self.dlg.comboBox_24.insertItems(0,heightfr)
-        self.dlg.comboBox_25.insertItems(0,heightfr)
-        self.dlg.comboBox_26.insertItems(0,heightfr)
-        self.dlg.comboBox_3.activated.connect(self.pervious_select1)
-        self.dlg.comboBox_4.activated.connect(self.pervious_select2)
-        self.dlg.comboBox_5.activated.connect(self.pervious_select3)
-        self.dlg.comboBox_6.activated.connect(self.pervious_select4)
-        self.dlg.comboBox_7.activated.connect(self.pervious_select5)
-        self.dlg.comboBox_8.activated.connect(self.pervious_select6)
-        self.dlg.comboBox_15.activated.connect(self.pervious_select7)
-        self.dlg.comboBox_16.activated.connect(self.pervious_select8)
-        
+    def LCZ_selection(self,enabled):
+        if enabled:
+            self.dlg.comboBox_27.clear()
+            self.dlg.comboBox_28.clear()
+            self.dlg.comboBox_29.clear()
+            self.dlg.comboBox_30.clear()
+            self.dlg.comboBox_27.setEnabled(False)
+            self.dlg.comboBox_28.setEnabled(False)
+            self.dlg.comboBox_29.setEnabled(False)
+            self.dlg.comboBox_30.setEnabled(False)
+            self.dlg.comboBox_3.clear()
+            self.dlg.comboBox_4.clear()
+            self.dlg.comboBox_5.clear()
+            self.dlg.comboBox_6.clear()
+            self.dlg.comboBox_7.clear()
+            self.dlg.comboBox_8.clear()
+            self.dlg.comboBox_15.clear()
+            self.dlg.comboBox_16.clear()
+            self.dlg.comboBox_19.clear()
+            self.dlg.comboBox_20.clear()
+            self.dlg.comboBox_3.setEnabled(True)
+            self.dlg.comboBox_4.setEnabled(True)
+            self.dlg.comboBox_5.setEnabled(True)
+            self.dlg.comboBox_6.setEnabled(True)            
+            self.dlg.comboBox_7.setEnabled(True)
+            self.dlg.comboBox_8.setEnabled(True)
+            self.dlg.comboBox_15.setEnabled(True)
+            self.dlg.comboBox_16.setEnabled(True)            
+            self.dlg.comboBox_9.setEnabled(True)
+            self.dlg.comboBox_10.setEnabled(True)
+            self.dlg.comboBox_11.setEnabled(True)
+            self.dlg.comboBox_12.setEnabled(True)            
+            self.dlg.comboBox_13.setEnabled(True)
+            self.dlg.comboBox_14.setEnabled(True)
+            self.dlg.comboBox_17.setEnabled(True)
+            self.dlg.comboBox_18.setEnabled(True)            
+            self.dlg.comboBox_19.setEnabled(True)
+            self.dlg.comboBox_20.setEnabled(True)
+            self.dlg.comboBox_21.setEnabled(True)
+            self.dlg.comboBox_22.setEnabled(True)            
+            self.dlg.comboBox_23.setEnabled(True)
+            self.dlg.comboBox_24.setEnabled(True)
+            self.dlg.comboBox_25.setEnabled(True)
+            self.dlg.comboBox_26.setEnabled(True)
+            lcz_grid = self.layerComboManagerLCgrid.getLayer()
+            if lcz_grid is None:
+                QMessageBox.critical(None, "Error", "No valid raster layer is selected")
+                return
+            provider = lcz_grid.dataProvider()
+            filepath_lc_grid= str(provider.dataSourceUri())
+            gdal_lc_grid = gdal.Open(filepath_lc_grid)
+            lcz_grid = gdal_lc_grid.ReadAsArray().astype(np.float)
+            LCZs = [1.,2.,3.,4.,5.,6.,7.,8.,9.,10.,101.,102.,103.]
+            countlcz = np.zeros(len(LCZs))
+            for l in range(len(LCZs)): 
+                countlcz[l] = np.count_nonzero(lcz_grid[lcz_grid==LCZs[l]])
+            sortcountLCZ = [(str(int(LCZs))) for countlcz, LCZs in sorted(zip(countlcz, LCZs),reverse=True)]
+            self.dlg.comboBox_3.insertItems(0,sortcountLCZ)
+            self.dlg.comboBox_4.insertItems(0,sortcountLCZ)
+            self.dlg.comboBox_5.insertItems(0,sortcountLCZ)
+            self.dlg.comboBox_6.insertItems(0,sortcountLCZ)
+            self.dlg.comboBox_7.insertItems(0,sortcountLCZ)
+            self.dlg.comboBox_8.insertItems(0,sortcountLCZ)
+            self.dlg.comboBox_15.insertItems(0,sortcountLCZ)
+            self.dlg.comboBox_16.insertItems(0,sortcountLCZ)
+            self.dlg.comboBox_19.insertItems(0,self.heightfr)
+            self.dlg.comboBox_20.insertItems(0,self.heightfr)
+            self.dlg.comboBox_21.insertItems(0,self.heightfr)
+            self.dlg.comboBox_22.insertItems(0,self.heightfr)
+            self.dlg.comboBox_23.insertItems(0,self.heightfr)
+            self.dlg.comboBox_24.insertItems(0,self.heightfr)
+            self.dlg.comboBox_25.insertItems(0,self.heightfr)
+            self.dlg.comboBox_26.insertItems(0,self.heightfr)
+            self.dlg.comboBox_3.activated.connect(self.pervious_select1)
+            self.dlg.comboBox_4.activated.connect(self.pervious_select2)
+            self.dlg.comboBox_5.activated.connect(self.pervious_select3)
+            self.dlg.comboBox_6.activated.connect(self.pervious_select4)
+            self.dlg.comboBox_7.activated.connect(self.pervious_select5)
+            self.dlg.comboBox_8.activated.connect(self.pervious_select6)
+            self.dlg.comboBox_15.activated.connect(self.pervious_select7)
+            self.dlg.comboBox_16.activated.connect(self.pervious_select8)
+            if self.dlg.radioButton_2.isChecked():
+                self.dlg.pushButton_2.clicked.connect(self.updatetable)
+            if self.dlg.radioButton.isChecked():
+                self.dlg.pushButton_2.clicked.connect(self.updatetable2)        
     def pervious_select1(self):
-        self.urbanchoices = ['100% grass','100% decidious trees','100% evergreen trees','100% bare soil','100% water','50% grass, 25% dec. trees, 25% ev. trees','Each 20%']
-        self.treechoices = ['100% evergreen', '100% decidious', '50% evergreen, 50% decidious','30% evergreen, 70% decidious','70% evergreen, 30% decidious']
         self.dlg.comboBox_9.clear()
         if (int(self.dlg.comboBox_3.currentText())<=10):
             self.dlg.comboBox_9.addItems(self.urbanchoices)
@@ -272,77 +332,229 @@ class LCZ_test:
         for x in range(len(lczboxes)): 
             lcz = int(lczboxes[x].currentText())
             if lcz>10:
+                iperv=float(self.dlg.tableWidget.item(0,lcz-91).text())+float(self.dlg.tableWidget.item(1,lcz-91).text())+float(self.dlg.tableWidget.item(2,lcz-91).text())+float(self.dlg.tableWidget.item(5,lcz-91).text())+float(self.dlg.tableWidget.item(6,lcz-91).text())
                 if (lcfrboxes[x].currentText()==self.treechoices[0] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-91).text())+float(self.dlg.tableWidget.item(1,lcz-91).text())+float(self.dlg.tableWidget.item(2,lcz-91).text())+float(self.dlg.tableWidget.item(5,lcz-91).text())+float(self.dlg.tableWidget.item(6,lcz-91).text())
                     self.dlg.tableWidget.setItem(4,lcz-91, QTableWidgetItem(str(1.-iperv)))
                     self.dlg.tableWidget.setItem(3,lcz-91, QTableWidgetItem(str(0.00)))
                 if (lcfrboxes[x].currentText()==self.treechoices[1] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-91).text())+float(self.dlg.tableWidget.item(1,lcz-91).text())+float(self.dlg.tableWidget.item(2,lcz-91).text())+float(self.dlg.tableWidget.item(5,lcz-91).text())+float(self.dlg.tableWidget.item(6,lcz-91).text())
                     self.dlg.tableWidget.setItem(3,lcz-91, QTableWidgetItem(str(1.-iperv)))
                     self.dlg.tableWidget.setItem(4,lcz-91, QTableWidgetItem(str(0.00)))
                 if (lcfrboxes[x].currentText()==self.treechoices[2] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-91).text())+float(self.dlg.tableWidget.item(1,lcz-91).text())+float(self.dlg.tableWidget.item(2,lcz-91).text())+float(self.dlg.tableWidget.item(5,lcz-91).text())+float(self.dlg.tableWidget.item(6,lcz-91).text())
                     self.dlg.tableWidget.setItem(3,lcz-91, QTableWidgetItem(str((1.-iperv)*0.5)))
                     self.dlg.tableWidget.setItem(4,lcz-91, QTableWidgetItem(str((1.-iperv)*0.5)))
                 if (lcfrboxes[x].currentText()==self.treechoices[3] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-91).text())+float(self.dlg.tableWidget.item(1,lcz-91).text())+float(self.dlg.tableWidget.item(2,lcz-91).text())+float(self.dlg.tableWidget.item(5,lcz-91).text())+float(self.dlg.tableWidget.item(6,lcz-91).text())
                     self.dlg.tableWidget.setItem(3,lcz-91, QTableWidgetItem(str((1.-iperv)*0.7)))
                     self.dlg.tableWidget.setItem(4,lcz-91, QTableWidgetItem(str((1.-iperv)*0.3)))   
                 if (lcfrboxes[x].currentText()==self.treechoices[4] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-91).text())+float(self.dlg.tableWidget.item(1,lcz-91).text())+float(self.dlg.tableWidget.item(2,lcz-91).text())+float(self.dlg.tableWidget.item(5,lcz-91).text())+float(self.dlg.tableWidget.item(6,lcz-91).text())
                     self.dlg.tableWidget.setItem(3,lcz-91, QTableWidgetItem(str((1.-iperv)*0.3)))
                     self.dlg.tableWidget.setItem(4,lcz-91, QTableWidgetItem(str((1.-iperv)*0.7)))
             if lcz<=10:
+                iperv=float(self.dlg.tableWidget.item(0,lcz-1).text())+float(self.dlg.tableWidget.item(1,lcz-1).text())
                 if (lcfrboxes[x].currentText()==self.urbanchoices[0] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-1).text())+float(self.dlg.tableWidget.item(1,lcz-1).text())
                     self.dlg.tableWidget.setItem(2,lcz-1, QTableWidgetItem(str(1.-iperv)))
                     self.dlg.tableWidget.setItem(3,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(4,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(5,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(6,lcz-1, QTableWidgetItem(str(0.00)))
                 if (lcfrboxes[x].currentText()==self.urbanchoices[1] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-1).text())+float(self.dlg.tableWidget.item(1,lcz-1).text())
                     self.dlg.tableWidget.setItem(3,lcz-1, QTableWidgetItem(str(1.-iperv)))
                     self.dlg.tableWidget.setItem(2,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(4,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(5,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(6,lcz-1, QTableWidgetItem(str(0.00)))
                 if (lcfrboxes[x].currentText()==self.urbanchoices[2] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-1).text())+float(self.dlg.tableWidget.item(1,lcz-1).text())
                     self.dlg.tableWidget.setItem(4,lcz-1, QTableWidgetItem(str(1.-iperv)))
                     self.dlg.tableWidget.setItem(2,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(3,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(5,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(6,lcz-1, QTableWidgetItem(str(0.00)))
                 if (lcfrboxes[x].currentText()==self.urbanchoices[3] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-1).text())+float(self.dlg.tableWidget.item(1,lcz-1).text())
                     self.dlg.tableWidget.setItem(5,lcz-1, QTableWidgetItem(str(1.-iperv)))
                     self.dlg.tableWidget.setItem(2,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(3,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(4,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(6,lcz-1, QTableWidgetItem(str(0.00)))
                 if (lcfrboxes[x].currentText()==self.urbanchoices[4] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-1).text())+float(self.dlg.tableWidget.item(1,lcz-1).text())
                     self.dlg.tableWidget.setItem(6,lcz-1, QTableWidgetItem(str(1.-iperv)))
                     self.dlg.tableWidget.setItem(2,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(3,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(4,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(5,lcz-1, QTableWidgetItem(str(0.00)))
                 if (lcfrboxes[x].currentText()==self.urbanchoices[5] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-1).text())+float(self.dlg.tableWidget.item(1,lcz-1).text())
                     self.dlg.tableWidget.setItem(2,lcz-1, QTableWidgetItem(str((1.-iperv)*0.5)))
                     self.dlg.tableWidget.setItem(3,lcz-1, QTableWidgetItem(str((1.-iperv)*0.25)))
                     self.dlg.tableWidget.setItem(4,lcz-1, QTableWidgetItem(str((1.-iperv)*0.25)))
                     self.dlg.tableWidget.setItem(5,lcz-1, QTableWidgetItem(str(0.00)))
                     self.dlg.tableWidget.setItem(6,lcz-1, QTableWidgetItem(str(0.00)))
                 if (lcfrboxes[x].currentText()==self.urbanchoices[6] ):
-                    iperv=float(self.dlg.tableWidget.item(0,lcz-1).text())+float(self.dlg.tableWidget.item(1,lcz-1).text())
                     self.dlg.tableWidget.setItem(2,lcz-1, QTableWidgetItem(str((1.-iperv)*0.2)))
                     self.dlg.tableWidget.setItem(3,lcz-1, QTableWidgetItem(str((1.-iperv)*0.2)))
                     self.dlg.tableWidget.setItem(4,lcz-1, QTableWidgetItem(str((1.-iperv)*0.2)))
                     self.dlg.tableWidget.setItem(5,lcz-1, QTableWidgetItem(str((1.-iperv)*0.2)))
                     self.dlg.tableWidget.setItem(6,lcz-1, QTableWidgetItem(str((1.-iperv)*0.2)))
+            if (lcfrboxes[x].currentText()==self.heightfr[0]):
+                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(0.0)))
+            if (lcfrboxes[x].currentText()==self.heightfr[1]):
+                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(4.0)))                
+            if (lcfrboxes[x].currentText()==self.heightfr[2]):
+                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(7.5)))
+            if (lcfrboxes[x].currentText()==self.heightfr[3]):
+                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(12.5)))
+            if (lcfrboxes[x].currentText()==self.heightfr[4]):
+                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(17.5)))
+            if (lcfrboxes[x].currentText()==self.heightfr[5]):
+                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(30.0)))
 
+    def allclass(self,enabled):
+        if enabled:
+            self.dlg.comboBox_27.setEnabled(True)
+            self.dlg.comboBox_28.setEnabled(True)
+            self.dlg.comboBox_29.setEnabled(True)
+            self.dlg.comboBox_30.setEnabled(True)
+            self.dlg.comboBox_3.clear()
+            self.dlg.comboBox_4.clear()
+            self.dlg.comboBox_5.clear()
+            self.dlg.comboBox_6.clear()
+            self.dlg.comboBox_7.clear()
+            self.dlg.comboBox_8.clear()
+            self.dlg.comboBox_15.clear()
+            self.dlg.comboBox_16.clear()
+            self.dlg.comboBox_9.clear()
+            self.dlg.comboBox_10.clear()
+            self.dlg.comboBox_11.clear()
+            self.dlg.comboBox_12.clear()
+            self.dlg.comboBox_13.clear()
+            self.dlg.comboBox_14.clear()
+            self.dlg.comboBox_17.clear()
+            self.dlg.comboBox_18.clear()        
+            self.dlg.comboBox_19.clear()
+            self.dlg.comboBox_20.clear()
+            self.dlg.comboBox_21.clear()
+            self.dlg.comboBox_22.clear()
+            self.dlg.comboBox_23.clear()
+            self.dlg.comboBox_24.clear()
+            self.dlg.comboBox_25.clear()
+            self.dlg.comboBox_26.clear()
+            self.dlg.comboBox_3.setEnabled(False)
+            self.dlg.comboBox_4.setEnabled(False)
+            self.dlg.comboBox_5.setEnabled(False)
+            self.dlg.comboBox_6.setEnabled(False)            
+            self.dlg.comboBox_7.setEnabled(False)
+            self.dlg.comboBox_8.setEnabled(False)
+            self.dlg.comboBox_15.setEnabled(False)
+            self.dlg.comboBox_16.setEnabled(False)            
+            self.dlg.comboBox_9.setEnabled(False)
+            self.dlg.comboBox_10.setEnabled(False)
+            self.dlg.comboBox_11.setEnabled(False)
+            self.dlg.comboBox_12.setEnabled(False)            
+            self.dlg.comboBox_13.setEnabled(False)
+            self.dlg.comboBox_14.setEnabled(False)
+            self.dlg.comboBox_17.setEnabled(False)
+            self.dlg.comboBox_18.setEnabled(False)            
+            self.dlg.comboBox_19.setEnabled(False)
+            self.dlg.comboBox_20.setEnabled(False)
+            self.dlg.comboBox_21.setEnabled(False)
+            self.dlg.comboBox_22.setEnabled(False)            
+            self.dlg.comboBox_23.setEnabled(False)
+            self.dlg.comboBox_24.setEnabled(False)
+            self.dlg.comboBox_25.setEnabled(False)
+            self.dlg.comboBox_26.setEnabled(False)
+            self.dlg.comboBox_27.addItems(self.urbanchoices)
+            self.dlg.comboBox_29.addItems(self.treechoices)
+            self.dlg.comboBox_28.insertItems(0,self.heightfr)
+            self.dlg.comboBox_30.insertItems(0,self.heightfr)
+            if self.dlg.radioButton_2.isChecked():
+                self.dlg.pushButton_2.clicked.connect(self.updatetable)
+            if self.dlg.radioButton.isChecked():
+                self.dlg.pushButton_2.clicked.connect(self.updatetable2)
+    def updatetable2(self):
+        for l in range(len(self.LCZs)): 
+            if (l<10):
+                iperv=float(self.dlg.tableWidget.item(0,l).text())+float(self.dlg.tableWidget.item(1,l).text())
+                if (self.dlg.comboBox_27.currentText()==self.urbanchoices[0] ):
+                    self.dlg.tableWidget.setItem(2,l, QTableWidgetItem(str(1.-iperv)))
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(5,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(6,l, QTableWidgetItem(str(0.00)))
+                if (self.dlg.comboBox_27.currentText()==self.urbanchoices[1] ):
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str(1.-iperv)))
+                    self.dlg.tableWidget.setItem(2,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(5,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(6,l, QTableWidgetItem(str(0.00)))
+                if (self.dlg.comboBox_27.currentText()==self.urbanchoices[2] ):
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str(1.-iperv)))
+                    self.dlg.tableWidget.setItem(2,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(5,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(6,l, QTableWidgetItem(str(0.00)))
+                if (self.dlg.comboBox_27.currentText()==self.urbanchoices[3] ):
+                    self.dlg.tableWidget.setItem(5,l, QTableWidgetItem(str(1.-iperv)))
+                    self.dlg.tableWidget.setItem(2,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(6,l, QTableWidgetItem(str(0.00)))
+                if (self.dlg.comboBox_27.currentText()==self.urbanchoices[4] ):
+                    self.dlg.tableWidget.setItem(6,l, QTableWidgetItem(str(1.-iperv)))
+                    self.dlg.tableWidget.setItem(2,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(5,l, QTableWidgetItem(str(0.00)))
+                if (self.dlg.comboBox_27.currentText()==self.urbanchoices[5] ):
+                    self.dlg.tableWidget.setItem(2,l, QTableWidgetItem(str((1.-iperv)*0.5)))
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str((1.-iperv)*0.25)))
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str((1.-iperv)*0.25)))
+                    self.dlg.tableWidget.setItem(5,l, QTableWidgetItem(str(0.00)))
+                    self.dlg.tableWidget.setItem(6,l, QTableWidgetItem(str(0.00)))
+                if (self.dlg.comboBox_27.currentText()==self.urbanchoices[6] ):
+                    self.dlg.tableWidget.setItem(2,l, QTableWidgetItem(str((1.-iperv)*0.2)))
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str((1.-iperv)*0.2)))
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str((1.-iperv)*0.2)))
+                    self.dlg.tableWidget.setItem(5,l, QTableWidgetItem(str((1.-iperv)*0.2)))
+                    self.dlg.tableWidget.setItem(6,l, QTableWidgetItem(str((1.-iperv)*0.2)))
+                if (self.dlg.comboBox_28.currentText()==self.heightfr[0]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(0.0)))
+                if (self.dlg.comboBox_28.currentText()==self.heightfr[1]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(4.0)))                
+                if (self.dlg.comboBox_28.currentText()==self.heightfr[2]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(7.5)))
+                if (self.dlg.comboBox_28.currentText()==self.heightfr[3]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(12.5)))
+                if (self.dlg.comboBox_28.currentText()==self.heightfr[4]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(17.5)))
+                if (self.dlg.comboBox_28.currentText()==self.heightfr[5]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(30.0)))   
+            else:
+                iperv = float(self.dlg.tableWidget.item(0,l).text())+ float(self.dlg.tableWidget.item(1,l).text())+ float(self.dlg.tableWidget.item(2,l).text())+ float(self.dlg.tableWidget.item(5,l).text())+ float(self.dlg.tableWidget.item(6,l).text())
+                if (self.dlg.comboBox_29.currentText()==self.treechoices[0] ):
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str(1.-iperv)))
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str(0.00)))
+                if (self.dlg.comboBox_29.currentText()==self.treechoices[1] ):
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str(1.-iperv)))
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str(0.00)))
+                if (self.dlg.comboBox_29.currentText()==self.treechoices[2] ):
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str((1.-iperv)*0.5)))
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str((1.-iperv)*0.5)))
+                if (self.dlg.comboBox_29.currentText()==self.treechoices[3] ):
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str((1.-iperv)*0.7)))
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str((1.-iperv)*0.3)))   
+                if (self.dlg.comboBox_29.currentText()==self.treechoices[4] ):
+                    self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str((1.-iperv)*0.3)))
+                    self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str((1.-iperv)*0.7)))
+                if (self.dlg.comboBox_30.currentText()==self.heightfr[0]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(0.0)))
+                if (self.dlg.comboBox_30.currentText()==self.heightfr[1]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(4.0)))                
+                if (self.dlg.comboBox_30.currentText()==self.heightfr[2]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(7.5)))
+                if (self.dlg.comboBox_30.currentText()==self.heightfr[3]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(12.5)))
+                if (self.dlg.comboBox_30.currentText()==self.heightfr[4]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(17.5)))
+                if (self.dlg.comboBox_30.currentText()==self.heightfr[5]):
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(30.0)))                    
+                
     def start_progress(self):
         self.steps = 0
         poly = self.layerComboManagerPolygrid.getLayer()
