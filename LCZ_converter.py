@@ -69,6 +69,7 @@ class LCZ_test:
         self.dlg = LCZ_testDialog()
         self.dlg.radioButton_2.toggled.connect(self.LCZ_selection)
         self.dlg.runButton.clicked.connect(self.start_progress)
+        self.dlg.closeButton.clicked.connect(self.close)
         self.dlg.pushButtonSelect.clicked.connect(self.folder_path)
         self.dlg.tableWidget.setEnabled(False)
         self.dlg.checkBox.toggled.connect(self.text_enable)
@@ -86,6 +87,7 @@ class LCZ_test:
         
         self.layerComboManagerPolygrid = VectorLayerCombo(self.dlg.comboBox_2)
         fieldgen = VectorLayerCombo(self.dlg.comboBox_2, initLayer="", options={"geomType": QGis.Polygon})
+        self.layerComboManagerPolyField = FieldCombo(self.dlg.comboBox_31, fieldgen) #, options={"fieldType":QGis.Float32}
         self.layerComboManagerLCgrid = RasterLayerCombo(self.dlg.comboBox)
         RasterLayerCombo(self.dlg.comboBox, initLayer="")
         self.urbanchoices = ['100% grass','100% decidious trees','100% evergreen trees','100% bare soil','100% water','50% grass, 25% dec. trees, 25% ev. trees','Each 20%']
@@ -577,10 +579,14 @@ class LCZ_test:
         if not poly.geometryType() == 2:
             QMessageBox.critical(None, "Error", "No valid Polygon layer is selected")
             return
+        poly_field = self.layerComboManagerPolyField.getFieldName()
+        if poly_field is None:
+            QMessageBox.critical(None, "Error", "An attribute with unique fields/records must be selected")
+            return
         vlayer = QgsVectorLayer(poly.source(), "polygon", "ogr")
         prov = vlayer.dataProvider()
         fields = prov.fields()
-        idx = vlayer.fieldNameIndex('id')
+        idx = vlayer.fieldNameIndex(poly_field)
         typetest = fields.at(idx).type()
         if typetest == 10:
             QMessageBox.critical(None, "ID field is sting type", "ID field must be either integer or float")
@@ -609,7 +615,7 @@ class LCZ_test:
         self.dlg.runButton.setText('Cancel')
         self.dlg.runButton.clicked.disconnect()
         self.dlg.runButton.clicked.connect(worker.kill)
-        self.dlg.pushButton_3.setEnabled(False)
+        self.dlg.closeButton.setEnabled(False)
 
         thread = QThread(self.dlg)
         worker.moveToThread(thread)
@@ -634,7 +640,7 @@ class LCZ_test:
             self.dlg.runButton.setText('Run')
             self.dlg.runButton.clicked.disconnect()
             self.dlg.runButton.clicked.connect(self.start_progress)
-            self.dlg.pushButton_3.setEnabled(True)
+            self.dlg.closeButton.setEnabled(True)
             self.dlg.progressBar.setValue(0)
             # QMessageBox.information(None, "Image Morphometric Parameters",
             #                         "Process finished! Check General Messages (speech bubble, lower left) "
@@ -646,7 +652,7 @@ class LCZ_test:
             self.dlg.runButton.setText('Run')
             self.dlg.runButton.clicked.disconnect()
             self.dlg.runButton.clicked.connect(self.start_progress)
-            self.dlg.pushButton_3.setEnabled(True)
+            self.dlg.closeButton.setEnabled(True)
             self.dlg.progressBar.setValue(0)
             QMessageBox.information(None, "Land Cover Fraction Grid", "Operations cancelled, "
                                                                            "process unsuccessful! See the General tab in Log Meassages Panel (speech bubble, lower right) for more information.")
@@ -676,6 +682,8 @@ class LCZ_test:
         self.dlg.exec_()
         gdal.UseExceptions()
         gdal.AllRegister()
+    def close(self):
+        self.dlg.close()
 
     def help(self):
         # url = "file://" + self.plugin_dir + "/help/Index.html"

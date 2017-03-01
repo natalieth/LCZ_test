@@ -110,14 +110,14 @@ class Worker(QtCore.QObject):
             header = 'ID Paved Buildings EvergreenTrees DecidiousTrees Grass Baresoil Water'
             numformat = '%3d %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f'
             arrmatsave = arrmat[1: arrmat.shape[0], :]
-            np.savetxt(self.folderPath[0] + '/' +'LCFG_isotropic.txt', arrmatsave, fmt=numformat, delimiter=' ', header=header, comments='')
+            np.savetxt(self.folderPath[0] + '/' +pre +'LCFG_isotropic.txt', arrmatsave, fmt=numformat, delimiter=' ', header=header, comments='')
 
             #when files are saved through the np.savetext method the values are rounded according to the information in
             #the numformat variable. This can cause the total sum of the values in a line in the text file to not be 1
             #this method reads through the text file after it has been generated to make sure every line has a sum of 1.
             self.textFileCheck(pre)
 
-            if self.dlg.checkbox_2.isChecked():
+            if self.dlg.checkBox_2.isChecked():
                 self.addattributes(self.vlayer, arrmatsave, header, pre)
 
             if self.killed is False:
