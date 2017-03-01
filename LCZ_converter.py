@@ -71,6 +71,7 @@ class LCZ_test:
         self.dlg.runButton.clicked.connect(self.start_progress)
         self.dlg.closeButton.clicked.connect(self.close)
         self.dlg.pushButtonSelect.clicked.connect(self.folder_path)
+        self.dlg.helpButton.clicked.connect(self.help)
         self.dlg.tableWidget.setEnabled(False)
         self.dlg.checkBox.toggled.connect(self.text_enable)
         self.dlg.radioButton.toggled.connect(self.allclass)
@@ -687,5 +688,5 @@ class LCZ_test:
 
     def help(self):
         # url = "file://" + self.plugin_dir + "/help/Index.html"
-        url = 'http://www.urban-climate.net/umep/UMEP_Manual#Urban_Land_Cover:_Land_Cover_Fraction_.28Grid.29'
+        url = 'http://www.urban-climate.net/umep/UMEP_Manual#Urban_Land_Cover:_LCZ_converter'
         webbrowser.open_new_tab(url)
