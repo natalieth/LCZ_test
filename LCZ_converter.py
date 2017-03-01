@@ -348,6 +348,19 @@ class LCZ_test:
                 if (lcfrboxes[x].currentText()==self.treechoices[4] ):
                     self.dlg.tableWidget.setItem(3,lcz-91, QTableWidgetItem(str((1.-iperv)*0.3)))
                     self.dlg.tableWidget.setItem(4,lcz-91, QTableWidgetItem(str((1.-iperv)*0.7)))
+                if (heightboxes[x].currentText()==self.heightfr[0]):
+                    self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(0.0)))
+                if (heightboxes[x].currentText()==self.heightfr[1]):
+                    self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(4.0)))                
+                if (heightboxes[x].currentText()==self.heightfr[2]):
+                    self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(7.5)))
+                if (heightboxes[x].currentText()==self.heightfr[3]):
+                    self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(12.5)))
+                if (heightboxes[x].currentText()==self.heightfr[4]):
+                    self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(17.5)))
+                if (heightboxes[x].currentText()==self.heightfr[5]):
+                    self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(30.0)))
+
             if lcz<=10:
                 iperv=float(self.dlg.tableWidget.item(0,lcz-1).text())+float(self.dlg.tableWidget.item(1,lcz-1).text())
                 if (lcfrboxes[x].currentText()==self.urbanchoices[0] ):
@@ -392,18 +405,18 @@ class LCZ_test:
                     self.dlg.tableWidget.setItem(4,lcz-1, QTableWidgetItem(str((1.-iperv)*0.2)))
                     self.dlg.tableWidget.setItem(5,lcz-1, QTableWidgetItem(str((1.-iperv)*0.2)))
                     self.dlg.tableWidget.setItem(6,lcz-1, QTableWidgetItem(str((1.-iperv)*0.2)))
-            if (lcfrboxes[x].currentText()==self.heightfr[0]):
-                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(0.0)))
-            if (lcfrboxes[x].currentText()==self.heightfr[1]):
-                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(4.0)))                
-            if (lcfrboxes[x].currentText()==self.heightfr[2]):
-                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(7.5)))
-            if (lcfrboxes[x].currentText()==self.heightfr[3]):
-                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(12.5)))
-            if (lcfrboxes[x].currentText()==self.heightfr[4]):
-                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(17.5)))
-            if (lcfrboxes[x].currentText()==self.heightfr[5]):
-                self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(30.0)))
+                if (heightboxes[x].currentText()==self.heightfr[0]):
+                    self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(0.0)))
+                if (heightboxes[x].currentText()==self.heightfr[1]):
+                    self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(4.0)))                
+                if (heightboxes[x].currentText()==self.heightfr[2]):
+                    self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(7.5)))
+                if (heightboxes[x].currentText()==self.heightfr[3]):
+                    self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(12.5)))
+                if (heightboxes[x].currentText()==self.heightfr[4]):
+                    self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(17.5)))
+                if (heightboxes[x].currentText()==self.heightfr[5]):
+                    self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(30.0)))
 
     def allclass(self,enabled):
         if enabled:
