@@ -527,7 +527,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Seperate LCZ's</string>
+      <string>Separate LCZ's</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_6">
