@@ -45,7 +45,9 @@ class Worker(QtCore.QObject):
             gdalwarp_os_dep = 'gdalwarp'
 
         ret = 0
-        arrmat = np.empty((1, 8))
+        arrmat1 = np.empty((1, 8))
+        arrmat2 = np.empty((1, 8))
+        arrmat3 = np.empty((1, 8))
         pre = str(self.dlg.lineEdit.text())
 
         try:
@@ -96,11 +98,19 @@ class Worker(QtCore.QObject):
                     lczfractions = LCZ_fractions(lc_grid_array,self.dlg)
                     lczfractions = self.resultcheck(lczfractions)
                     
-                    arr2 = np.array([f.attributes()[self.idx], lczfractions["lc_frac_all"][0,0], lczfractions["lc_frac_all"][0,1],
+                    arr1 = np.array([f.attributes()[self.idx], lczfractions["lc_frac_all"][0,0], lczfractions["lc_frac_all"][0,1],
                                       lczfractions["lc_frac_all"][0,2], lczfractions["lc_frac_all"][0,3], lczfractions["lc_frac_all"][0,4],
                                      lczfractions["lc_frac_all"][0,5], lczfractions["lc_frac_all"][0,6]])
+                    arr2 = np.array([f.attributes()[self.idx], lczfractions["bui_aero"][0,0], lczfractions["bui_aero"][0,1],
+                                      lczfractions["bui_aero"][0,2], lczfractions["bui_aero"][0,3], lczfractions["bui_aero"][0,4],
+                                     lczfractions["bui_aero"][0,5], lczfractions["bui_aero"][0,6]])
+                    arr3 = np.array([f.attributes()[self.idx], lczfractions["veg_aero"][0,0], lczfractions["veg_aero"][0,1],
+                                      lczfractions["veg_aero"][0,2], lczfractions["veg_aero"][0,3], lczfractions["veg_aero"][0,4],
+                                     lczfractions["veg_aero"][0,5], lczfractions["veg_aero"][0,6]])
 
-                    arrmat = np.vstack([arrmat, arr2])
+                    arrmat1 = np.vstack([arrmat1, arr1])
+                    arrmat2 = np.vstack([arrmat2, arr2])
+                    arrmat3 = np.vstack([arrmat3, arr3])
 
                 dataset = None
                 dataset2 = None
@@ -109,16 +119,26 @@ class Worker(QtCore.QObject):
 
             header = 'ID Paved Buildings EvergreenTrees DecidiousTrees Grass Baresoil Water'
             numformat = '%3d %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f %5.3f'
-            arrmatsave = arrmat[1: arrmat.shape[0], :]
-            np.savetxt(self.folderPath[0] + '/' +pre +'LCFG_isotropic.txt', arrmatsave, fmt=numformat, delimiter=' ', header=header, comments='')
-
+            arrmatsave1 = arrmat1[1: arrmat1.shape[0], :]
+            np.savetxt(self.folderPath[0] + '/' +pre +'LCFG_isotropic.txt', arrmatsave1, fmt=numformat, delimiter=' ', header=header, comments='')
+            header = ' ID  pai   fai   zH  zHmax   zHstd  zd  z0'
+            numformat = '%3d %4.3f %4.3f %5.3f %5.3f %5.3f %5.3f %5.3f'
+            arrmatsave2 = arrmat2[1: arrmat2.shape[0], :]
+            np.savetxt(self.folderPath[0] + '/' + pre + '_' + 'build_IMPGrid_isotropic.txt', arrmatsave2,fmt=numformat, delimiter=' ', header=header, comments='')
+            header = ' ID  pai   fai   zH  zHmax   zHstd  zd  z0'
+            numformat = '%3d %4.3f %4.3f %5.3f %5.3f %5.3f %5.3f %5.3f'
+            arrmatsave3 = arrmat3[1: arrmat3.shape[0], :]
+            np.savetxt(self.folderPath[0] + '/' + pre + '_' + 'veg_IMPGrid_isotropic.txt', arrmatsave3,fmt=numformat, delimiter=' ', header=header, comments='')
+            
             #when files are saved through the np.savetext method the values are rounded according to the information in
             #the numformat variable. This can cause the total sum of the values in a line in the text file to not be 1
             #this method reads through the text file after it has been generated to make sure every line has a sum of 1.
             self.textFileCheck(pre)
 
             if self.dlg.checkBox_2.isChecked():
-                self.addattributes(self.vlayer, arrmatsave, header, pre)
+                self.addattributes(self.vlayer, arrmatsave1, header, pre)
+                self.addattributes(self.vlayer, arrmatsave2, header, pre)
+                self.addattributes(self.vlayer, arrmatsave3, header, pre)
 
             if self.killed is False:
                 self.progress.emit()

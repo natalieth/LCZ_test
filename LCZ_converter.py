@@ -352,17 +352,29 @@ class LCZ_test:
                     self.dlg.tableWidget.setItem(3,lcz-91, QTableWidgetItem(str((1.-iperv)*0.3)))
                     self.dlg.tableWidget.setItem(4,lcz-91, QTableWidgetItem(str((1.-iperv)*0.7)))
                 if (heightboxes[x].currentText()==self.heightfr[0]):
-                    self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(0.0)))
+                    self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(0.5)))
+                    self.dlg.tableWidget.setItem(12,lcz-91, QTableWidgetItem(str(0.3)))
+                    self.dlg.tableWidget.setItem(14,lcz-91, QTableWidgetItem(str(1.0)))
                 if (heightboxes[x].currentText()==self.heightfr[1]):
-                    self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(4.0)))                
+                    self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(4.0)))
+                    self.dlg.tableWidget.setItem(12,lcz-91, QTableWidgetItem(str(1.0)))
+                    self.dlg.tableWidget.setItem(14,lcz-91, QTableWidgetItem(str(5.0)))
                 if (heightboxes[x].currentText()==self.heightfr[2]):
                     self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(7.5)))
+                    self.dlg.tableWidget.setItem(12,lcz-91, QTableWidgetItem(str(1.8)))
+                    self.dlg.tableWidget.setItem(14,lcz-91, QTableWidgetItem(str(10.0)))
                 if (heightboxes[x].currentText()==self.heightfr[3]):
                     self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(12.5)))
+                    self.dlg.tableWidget.setItem(12,lcz-91, QTableWidgetItem(str(1.8)))
+                    self.dlg.tableWidget.setItem(14,lcz-91, QTableWidgetItem(str(15.0)))
                 if (heightboxes[x].currentText()==self.heightfr[4]):
                     self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(17.5)))
+                    self.dlg.tableWidget.setItem(12,lcz-91, QTableWidgetItem(str(2.0)))
+                    self.dlg.tableWidget.setItem(14,lcz-91, QTableWidgetItem(str(20.0)))
                 if (heightboxes[x].currentText()==self.heightfr[5]):
                     self.dlg.tableWidget.setItem(8,lcz-91, QTableWidgetItem(str(30.0)))
+                    self.dlg.tableWidget.setItem(12,lcz-91, QTableWidgetItem(str(10)))
+                    self.dlg.tableWidget.setItem(14,lcz-91, QTableWidgetItem(str(45.0)))
 
             if lcz<=10:
                 iperv=float(self.dlg.tableWidget.item(0,lcz-1).text())+float(self.dlg.tableWidget.item(1,lcz-1).text())
@@ -409,18 +421,29 @@ class LCZ_test:
                     self.dlg.tableWidget.setItem(5,lcz-1, QTableWidgetItem(str((1.-iperv)*0.2)))
                     self.dlg.tableWidget.setItem(6,lcz-1, QTableWidgetItem(str((1.-iperv)*0.2)))
                 if (heightboxes[x].currentText()==self.heightfr[0]):
-                    self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(0.0)))
+                    self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(0.5)))
+                    self.dlg.tableWidget.setItem(12,lcz-1, QTableWidgetItem(str(0.3)))
+                    self.dlg.tableWidget.setItem(14,lcz-1, QTableWidgetItem(str(1.0)))
                 if (heightboxes[x].currentText()==self.heightfr[1]):
-                    self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(4.0)))                
+                    self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(4.0)))
+                    self.dlg.tableWidget.setItem(12,lcz-1, QTableWidgetItem(str(1.0)))
+                    self.dlg.tableWidget.setItem(14,lcz-1, QTableWidgetItem(str(5.0)))
                 if (heightboxes[x].currentText()==self.heightfr[2]):
                     self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(7.5)))
+                    self.dlg.tableWidget.setItem(12,lcz-1, QTableWidgetItem(str(1.8)))
+                    self.dlg.tableWidget.setItem(14,lcz-1, QTableWidgetItem(str(10.0)))
                 if (heightboxes[x].currentText()==self.heightfr[3]):
                     self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(12.5)))
+                    self.dlg.tableWidget.setItem(12,lcz-1, QTableWidgetItem(str(1.8)))
+                    self.dlg.tableWidget.setItem(14,lcz-1, QTableWidgetItem(str(15.0)))
                 if (heightboxes[x].currentText()==self.heightfr[4]):
                     self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(17.5)))
+                    self.dlg.tableWidget.setItem(12,lcz-1, QTableWidgetItem(str(2.0)))
+                    self.dlg.tableWidget.setItem(14,lcz-1, QTableWidgetItem(str(20.0)))
                 if (heightboxes[x].currentText()==self.heightfr[5]):
                     self.dlg.tableWidget.setItem(8,lcz-1, QTableWidgetItem(str(30.0)))
-
+                    self.dlg.tableWidget.setItem(12,lcz-1, QTableWidgetItem(str(10)))
+                    self.dlg.tableWidget.setItem(14,lcz-1, QTableWidgetItem(str(45.0)))
     def allclass(self,enabled):
         if enabled:
             self.dlg.comboBox_27.setEnabled(True)
@@ -530,17 +553,29 @@ class LCZ_test:
                     self.dlg.tableWidget.setItem(5,l, QTableWidgetItem(str((1.-iperv)*0.2)))
                     self.dlg.tableWidget.setItem(6,l, QTableWidgetItem(str((1.-iperv)*0.2)))
                 if (self.dlg.comboBox_28.currentText()==self.heightfr[0]):
-                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(0.0)))
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(0.5)))
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(0.3)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(1.0)))
                 if (self.dlg.comboBox_28.currentText()==self.heightfr[1]):
-                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(4.0)))                
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(4.0)))
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(1.0)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(5.0)))
                 if (self.dlg.comboBox_28.currentText()==self.heightfr[2]):
                     self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(7.5)))
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(1.8)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(10.0)))
                 if (self.dlg.comboBox_28.currentText()==self.heightfr[3]):
                     self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(12.5)))
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(1.8)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(15.0)))
                 if (self.dlg.comboBox_28.currentText()==self.heightfr[4]):
                     self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(17.5)))
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(2.0)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(20.0)))
                 if (self.dlg.comboBox_28.currentText()==self.heightfr[5]):
-                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(30.0)))   
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(30.0))) 
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(10)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(45.0)))
             else:
                 iperv = float(self.dlg.tableWidget.item(0,l).text())+ float(self.dlg.tableWidget.item(1,l).text())+ float(self.dlg.tableWidget.item(2,l).text())+ float(self.dlg.tableWidget.item(5,l).text())+ float(self.dlg.tableWidget.item(6,l).text())
                 if (self.dlg.comboBox_29.currentText()==self.treechoices[0] ):
@@ -559,17 +594,29 @@ class LCZ_test:
                     self.dlg.tableWidget.setItem(3,l, QTableWidgetItem(str((1.-iperv)*0.3)))
                     self.dlg.tableWidget.setItem(4,l, QTableWidgetItem(str((1.-iperv)*0.7)))
                 if (self.dlg.comboBox_30.currentText()==self.heightfr[0]):
-                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(0.0)))
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(0.5)))
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(0.3)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(1.0)))
                 if (self.dlg.comboBox_30.currentText()==self.heightfr[1]):
-                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(4.0)))                
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(4.0)))
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(1.0)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(5.0)))
                 if (self.dlg.comboBox_30.currentText()==self.heightfr[2]):
                     self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(7.5)))
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(1.8)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(10.0)))
                 if (self.dlg.comboBox_30.currentText()==self.heightfr[3]):
                     self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(12.5)))
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(1.8)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(15.0)))
                 if (self.dlg.comboBox_30.currentText()==self.heightfr[4]):
                     self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(17.5)))
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(2.0)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(20.0)))
                 if (self.dlg.comboBox_30.currentText()==self.heightfr[5]):
-                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(30.0)))                    
+                    self.dlg.tableWidget.setItem(8,l, QTableWidgetItem(str(30.0))) 
+                    self.dlg.tableWidget.setItem(12,l, QTableWidgetItem(str(10)))
+                    self.dlg.tableWidget.setItem(14,l, QTableWidgetItem(str(45.0)))                
                 
     def start_progress(self):
         self.steps = 0

@@ -64,7 +64,7 @@
     <rect>
      <x>707</x>
      <y>400</y>
-     <width>125</width>
+     <width>91</width>
      <height>21</height>
     </rect>
    </property>
@@ -88,11 +88,11 @@
      <x>420</x>
      <y>435</y>
      <width>91</width>
-     <height>16</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>output folder:</string>
+    <string>Output folder:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_2">
@@ -144,19 +144,6 @@
     <number>24</number>
    </property>
   </widget>
-  <widget class="QPushButton" name="helpButton">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>490</y>
-     <width>70</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Help</string>
-   </property>
-  </widget>
   <widget class="QCheckBox" name="checkBox_2">
    <property name="geometry">
     <rect>
@@ -180,423 +167,8 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
-   <widget class="QWidget" name="tab">
-    <attribute name="title">
-     <string>Pervious distribution</string>
-    </attribute>
-    <widget class="QLabel" name="label_5">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>0</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Pervious distribution:</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_3">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>30</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_4">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>60</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_5">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>90</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_6">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>120</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_7">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>150</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_8">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>180</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_9">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>30</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_10">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>60</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_11">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>90</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_12">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>120</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_13">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>150</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_14">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>180</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_7">
-     <property name="geometry">
-      <rect>
-       <x>280</x>
-       <y>0</y>
-       <width>111</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>LCZ's :</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_8">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>0</y>
-       <width>141</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Fraction distributions:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_9">
-     <property name="geometry">
-      <rect>
-       <x>700</x>
-       <y>0</y>
-       <width>231</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Height of trees:</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_15">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>210</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_16">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>240</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_17">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>210</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_18">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>240</y>
-       <width>221</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_19">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>30</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_20">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>60</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_21">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>90</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_22">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>120</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_23">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>150</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_24">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>180</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_25">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>210</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_26">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>240</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>230</y>
-       <width>113</width>
-       <height>32</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Update Table</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>50</y>
-       <width>141</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Same for all LCZ's</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>30</y>
-       <width>141</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Separate LCZ's</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_6">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>80</y>
-       <width>60</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Urban:</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_27">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>100</y>
-       <width>141</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_10">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>130</y>
-       <width>60</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Rural:</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_28">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>100</y>
-       <width>91</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_11">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>80</y>
-       <width>101</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Height of trees:</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_29">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>150</y>
-       <width>141</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_30">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>150</y>
-       <width>91</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
      <string>Table</string>
@@ -653,6 +225,36 @@
      <row>
       <property name="text">
        <string>Mean vegetation height (m)</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Frontal area index buildings (-)</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Frontal area index vegetation (-)</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Building height standard dev. (m)</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Vegetation height standard dev. (m)</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Maximum building height (m)</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Maximum vegetation height (m)</string>
       </property>
      </row>
      <column>
@@ -1505,6 +1107,516 @@
        <string>0.0</string>
       </property>
      </item>
+     <item row="9" column="0">
+      <property name="text">
+       <string>0.3</string>
+      </property>
+     </item>
+     <item row="9" column="1">
+      <property name="text">
+       <string>0.2</string>
+      </property>
+     </item>
+     <item row="9" column="2">
+      <property name="text">
+       <string>0.16</string>
+      </property>
+     </item>
+     <item row="9" column="3">
+      <property name="text">
+       <string>0.26</string>
+      </property>
+     </item>
+     <item row="9" column="4">
+      <property name="text">
+       <string>0.16</string>
+      </property>
+     </item>
+     <item row="9" column="5">
+      <property name="text">
+       <string>0.2</string>
+      </property>
+     </item>
+     <item row="9" column="6">
+      <property name="text">
+       <string>0.13</string>
+      </property>
+     </item>
+     <item row="9" column="7">
+      <property name="text">
+       <string>0.16</string>
+      </property>
+     </item>
+     <item row="9" column="8">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="9" column="9">
+      <property name="text">
+       <string>0.26</string>
+      </property>
+     </item>
+     <item row="9" column="10">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="9" column="11">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="9" column="12">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="9" column="13">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="9" column="14">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="9" column="15">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="9" column="16">
+      <property name="text">
+       <string>0.0</string>
+      </property>
+     </item>
+     <item row="10" column="0">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="10" column="1">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="10" column="2">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="10" column="3">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="10" column="4">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="10" column="5">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="10" column="6">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="10" column="7">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="10" column="8">
+      <property name="text">
+       <string>0.16</string>
+      </property>
+     </item>
+     <item row="10" column="9">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="10" column="10">
+      <property name="text">
+       <string>0.25</string>
+      </property>
+     </item>
+     <item row="10" column="11">
+      <property name="text">
+       <string>0.20</string>
+      </property>
+     </item>
+     <item row="10" column="12">
+      <property name="text">
+       <string>0.14</string>
+      </property>
+     </item>
+     <item row="10" column="13">
+      <property name="text">
+       <string>0.12</string>
+      </property>
+     </item>
+     <item row="10" column="14">
+      <property name="text">
+       <string>0.05</string>
+      </property>
+     </item>
+     <item row="10" column="15">
+      <property name="text">
+       <string>0.05</string>
+      </property>
+     </item>
+     <item row="10" column="16">
+      <property name="text">
+       <string>0.0</string>
+      </property>
+     </item>
+     <item row="11" column="0">
+      <property name="text">
+       <string>40.0</string>
+      </property>
+     </item>
+     <item row="11" column="1">
+      <property name="text">
+       <string>4.0</string>
+      </property>
+     </item>
+     <item row="11" column="2">
+      <property name="text">
+       <string>2.3</string>
+      </property>
+     </item>
+     <item row="11" column="3">
+      <property name="text">
+       <string>25.0</string>
+      </property>
+     </item>
+     <item row="11" column="4">
+      <property name="text">
+       <string>4.0</string>
+      </property>
+     </item>
+     <item row="11" column="5">
+      <property name="text">
+       <string>2.3</string>
+      </property>
+     </item>
+     <item row="11" column="6">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="11" column="7">
+      <property name="text">
+       <string>2.3</string>
+      </property>
+     </item>
+     <item row="11" column="8">
+      <property name="text">
+       <string>2.3</string>
+      </property>
+     </item>
+     <item row="11" column="9">
+      <property name="text">
+       <string>3.3</string>
+      </property>
+     </item>
+     <item row="11" column="10">
+      <property name="text">
+       <string>2.3</string>
+      </property>
+     </item>
+     <item row="11" column="11">
+      <property name="text">
+       <string>2.3</string>
+      </property>
+     </item>
+     <item row="11" column="12">
+      <property name="text">
+       <string>2.3</string>
+      </property>
+     </item>
+     <item row="11" column="13">
+      <property name="text">
+       <string>2.3</string>
+      </property>
+     </item>
+     <item row="11" column="14">
+      <property name="text">
+       <string>2.3</string>
+      </property>
+     </item>
+     <item row="11" column="15">
+      <property name="text">
+       <string>2.3</string>
+      </property>
+     </item>
+     <item row="11" column="16">
+      <property name="text">
+       <string>0.0</string>
+      </property>
+     </item>
+     <item row="12" column="0">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="12" column="1">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="12" column="2">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="12" column="3">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="12" column="4">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="12" column="5">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="12" column="6">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="12" column="7">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="12" column="8">
+      <property name="text">
+       <string>4.0</string>
+      </property>
+     </item>
+     <item row="12" column="9">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="12" column="10">
+      <property name="text">
+       <string>9.0</string>
+      </property>
+     </item>
+     <item row="12" column="11">
+      <property name="text">
+       <string>4.0</string>
+      </property>
+     </item>
+     <item row="12" column="12">
+      <property name="text">
+       <string>0.7</string>
+      </property>
+     </item>
+     <item row="12" column="13">
+      <property name="text">
+       <string>0.3</string>
+      </property>
+     </item>
+     <item row="12" column="14">
+      <property name="text">
+       <string>0.05</string>
+      </property>
+     </item>
+     <item row="12" column="15">
+      <property name="text">
+       <string>0.05</string>
+      </property>
+     </item>
+     <item row="12" column="16">
+      <property name="text">
+       <string>0.0</string>
+      </property>
+     </item>
+     <item row="13" column="0">
+      <property name="text">
+       <string>200.0</string>
+      </property>
+     </item>
+     <item row="13" column="1">
+      <property name="text">
+       <string>25.0</string>
+      </property>
+     </item>
+     <item row="13" column="2">
+      <property name="text">
+       <string>10.0</string>
+      </property>
+     </item>
+     <item row="13" column="3">
+      <property name="text">
+       <string>150.0</string>
+      </property>
+     </item>
+     <item row="13" column="4">
+      <property name="text">
+       <string>25.0</string>
+      </property>
+     </item>
+     <item row="13" column="5">
+      <property name="text">
+       <string>10.0</string>
+      </property>
+     </item>
+     <item row="13" column="6">
+      <property name="text">
+       <string>4.0</string>
+      </property>
+     </item>
+     <item row="13" column="7">
+      <property name="text">
+       <string>10.0</string>
+      </property>
+     </item>
+     <item row="13" column="8">
+      <property name="text">
+       <string>10.0</string>
+      </property>
+     </item>
+     <item row="13" column="9">
+      <property name="text">
+       <string>15.0</string>
+      </property>
+     </item>
+     <item row="13" column="10">
+      <property name="text">
+       <string>10.0</string>
+      </property>
+     </item>
+     <item row="13" column="11">
+      <property name="text">
+       <string>10.0</string>
+      </property>
+     </item>
+     <item row="13" column="12">
+      <property name="text">
+       <string>10.0</string>
+      </property>
+     </item>
+     <item row="13" column="13">
+      <property name="text">
+       <string>10.0</string>
+      </property>
+     </item>
+     <item row="13" column="14">
+      <property name="text">
+       <string>10.0</string>
+      </property>
+     </item>
+     <item row="13" column="15">
+      <property name="text">
+       <string>10.0</string>
+      </property>
+     </item>
+     <item row="13" column="16">
+      <property name="text">
+       <string>0.0</string>
+      </property>
+     </item>
+     <item row="14" column="0">
+      <property name="text">
+       <string>2.0</string>
+      </property>
+     </item>
+     <item row="14" column="1">
+      <property name="text">
+       <string>2.0</string>
+      </property>
+     </item>
+     <item row="14" column="2">
+      <property name="text">
+       <string>2.0</string>
+      </property>
+     </item>
+     <item row="14" column="3">
+      <property name="text">
+       <string>2.0</string>
+      </property>
+     </item>
+     <item row="14" column="4">
+      <property name="text">
+       <string>2.0</string>
+      </property>
+     </item>
+     <item row="14" column="5">
+      <property name="text">
+       <string>2.0</string>
+      </property>
+     </item>
+     <item row="14" column="6">
+      <property name="text">
+       <string>2.0</string>
+      </property>
+     </item>
+     <item row="14" column="7">
+      <property name="text">
+       <string>2.0</string>
+      </property>
+     </item>
+     <item row="14" column="8">
+      <property name="text">
+       <string>15.0</string>
+      </property>
+     </item>
+     <item row="14" column="9">
+      <property name="text">
+       <string>2.0</string>
+      </property>
+     </item>
+     <item row="14" column="10">
+      <property name="text">
+       <string>30.0</string>
+      </property>
+     </item>
+     <item row="14" column="11">
+      <property name="text">
+       <string>15.0</string>
+      </property>
+     </item>
+     <item row="14" column="12">
+      <property name="text">
+       <string>2.0</string>
+      </property>
+     </item>
+     <item row="14" column="13">
+      <property name="text">
+       <string>1.0</string>
+      </property>
+     </item>
+     <item row="14" column="14">
+      <property name="text">
+       <string>0.25</string>
+      </property>
+     </item>
+     <item row="14" column="15">
+      <property name="text">
+       <string>0.25</string>
+      </property>
+     </item>
+     <item row="14" column="16">
+      <property name="text">
+       <string>0.01</string>
+      </property>
+     </item>
     </widget>
     <widget class="QCheckBox" name="checkBox">
      <property name="geometry">
@@ -1517,6 +1629,421 @@
      </property>
      <property name="text">
       <string>adjust default parameters</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Pervious distribution</string>
+    </attribute>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Pervious distribution:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_3">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>30</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_4">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>60</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_5">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>90</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_6">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>120</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_7">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>150</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_8">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>180</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_9">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>30</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_10">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>60</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_11">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>90</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_12">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>120</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_13">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>150</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_14">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>180</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>0</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>LCZ's :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>0</y>
+       <width>141</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Fraction distributions:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>0</y>
+       <width>231</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Height of vegetation:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_15">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>210</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_16">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>240</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_17">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>210</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_18">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>240</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_19">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>30</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_20">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>60</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_21">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>90</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_22">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>120</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_23">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>150</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_24">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>180</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_25">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>210</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_26">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>240</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>230</y>
+       <width>113</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Update Table</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>50</y>
+       <width>141</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Same for all LCZ's</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>30</y>
+       <width>141</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Separate LCZ's</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>80</y>
+       <width>60</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Urban:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_27">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>100</y>
+       <width>131</width>
+       <height>26</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>130</y>
+       <width>60</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Rural:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_28">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>100</y>
+       <width>111</width>
+       <height>26</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>80</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Height of vegetation:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_29">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>150</y>
+       <width>131</width>
+       <height>26</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_30">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>150</y>
+       <width>111</width>
+       <height>26</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -1558,6 +2085,19 @@
    </property>
    <property name="text">
     <string>Close</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>490</y>
+     <width>97</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Help</string>
    </property>
   </widget>
  </widget>
