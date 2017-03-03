@@ -193,6 +193,8 @@ class LCZ_test:
             QMessageBox.critical(None, "Error", "No valid raster layer is selected")
             return
         lcz_grid.loadNamedStyle(self.plugin_dir + '/cmap_WUDAPT_2015.qml')
+        canvas = self.iface.mapCanvas()
+        canvas.refresh()
         
     def folder_path(self):
         self.fileDialog.open()
