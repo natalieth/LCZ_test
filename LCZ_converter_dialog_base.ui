@@ -16,8 +16,8 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>529</x>
-     <y>8</y>
+     <x>350</x>
+     <y>4</y>
      <width>271</width>
      <height>26</height>
     </rect>
@@ -26,8 +26,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>10</y>
+     <x>277</x>
+     <y>8</y>
      <width>68</width>
      <height>16</height>
     </rect>
@@ -49,21 +49,21 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>220</x>
      <y>44</y>
-     <width>72</width>
-     <height>16</height>
+     <width>131</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Vector grid:</string>
+    <string>Vector polygon grid:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>707</x>
-     <y>400</y>
+     <x>510</x>
+     <y>395</y>
      <width>91</width>
      <height>21</height>
     </rect>
@@ -72,8 +72,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>400</y>
+     <x>440</x>
+     <y>397</y>
      <width>63</width>
      <height>16</height>
     </rect>
@@ -86,7 +86,7 @@
    <property name="geometry">
     <rect>
      <x>420</x>
-     <y>435</y>
+     <y>430</y>
      <width>91</width>
      <height>20</height>
     </rect>
@@ -99,7 +99,7 @@
    <property name="geometry">
     <rect>
      <x>510</x>
-     <y>433</y>
+     <y>431</y>
      <width>231</width>
      <height>21</height>
     </rect>
@@ -109,7 +109,7 @@
    <property name="geometry">
     <rect>
      <x>760</x>
-     <y>430</y>
+     <y>425</y>
      <width>80</width>
      <height>32</height>
     </rect>
@@ -148,7 +148,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>430</y>
+     <y>429</y>
      <width>311</width>
      <height>20</height>
     </rect>
@@ -167,7 +167,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -1621,7 +1621,7 @@
     <widget class="QCheckBox" name="checkBox">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>14</x>
        <y>10</y>
        <width>181</width>
        <height>20</height>
@@ -1792,13 +1792,13 @@
       </rect>
      </property>
      <property name="text">
-      <string>Fraction distributions:</string>
+      <string>Fraction distribution:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_9">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>690</x>
        <y>0</y>
        <width>231</width>
        <height>16</height>
@@ -1958,7 +1958,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>30</y>
+       <y>25</y>
        <width>141</width>
        <height>20</height>
       </rect>
@@ -1985,7 +1985,7 @@
       <rect>
        <x>0</x>
        <y>100</y>
-       <width>131</width>
+       <width>151</width>
        <height>26</height>
       </rect>
      </property>
@@ -2006,7 +2006,7 @@
     <widget class="QComboBox" name="comboBox_28">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>155</x>
        <y>100</y>
        <width>111</width>
        <height>26</height>
@@ -2031,7 +2031,7 @@
       <rect>
        <x>0</x>
        <y>150</y>
-       <width>131</width>
+       <width>151</width>
        <height>26</height>
       </rect>
      </property>
@@ -2039,7 +2039,7 @@
     <widget class="QComboBox" name="comboBox_30">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>155</x>
        <y>150</y>
        <width>111</width>
        <height>26</height>
@@ -2078,7 +2078,7 @@
    <property name="geometry">
     <rect>
      <x>760</x>
-     <y>490</y>
+     <y>495</y>
      <width>80</width>
      <height>32</height>
     </rect>
@@ -2090,7 +2090,7 @@
   <widget class="QPushButton" name="helpButton">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>16</x>
      <y>490</y>
      <width>97</width>
      <height>32</height>
