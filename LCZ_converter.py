@@ -75,6 +75,7 @@ class LCZ_test:
         self.dlg.tableWidget.setEnabled(False)
         self.dlg.checkBox.toggled.connect(self.text_enable)
         self.dlg.radioButton.toggled.connect(self.allclass)
+        self.dlg.colorButton.clicked.connect(self.color)
         self.dlg.progressBar.setValue(0)
         self.fileDialog = QFileDialog()
         self.fileDialog.setFileMode(4)
@@ -186,6 +187,13 @@ class LCZ_test:
             self.dlg.tableWidget.setEnabled(True)
         else:
             self.dlg.tableWidget.setEnabled(False)
+    def color(self):
+        lcz_grid = self.layerComboManagerLCgrid.getLayer()
+        if lcz_grid is None:
+            QMessageBox.critical(None, "Error", "No valid raster layer is selected")
+            return
+        lcz_grid.loadNamedStyle(self.plugin_dir + '/cmap_WUDAPT_2015.qml')
+        
     def folder_path(self):
         self.fileDialog.open()
         result = self.fileDialog.exec_()

@@ -2100,6 +2100,19 @@
     <string>Help</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="colorButton">
+   <property name="geometry">
+    <rect>
+     <x>697</x>
+     <y>2</y>
+     <width>101</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Color raster</string>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>comboBox</tabstop>
