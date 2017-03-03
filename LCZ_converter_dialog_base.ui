@@ -167,7 +167,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -2101,6 +2101,52 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>comboBox</tabstop>
+  <tabstop>comboBox_2</tabstop>
+  <tabstop>checkBox_2</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>helpButton</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>pushButtonSelect</tabstop>
+  <tabstop>runButton</tabstop>
+  <tabstop>comboBox_31</tabstop>
+  <tabstop>closeButton</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>comboBox_3</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>comboBox_4</tabstop>
+  <tabstop>comboBox_5</tabstop>
+  <tabstop>comboBox_6</tabstop>
+  <tabstop>comboBox_7</tabstop>
+  <tabstop>comboBox_8</tabstop>
+  <tabstop>comboBox_9</tabstop>
+  <tabstop>comboBox_10</tabstop>
+  <tabstop>comboBox_11</tabstop>
+  <tabstop>comboBox_12</tabstop>
+  <tabstop>comboBox_13</tabstop>
+  <tabstop>comboBox_14</tabstop>
+  <tabstop>comboBox_15</tabstop>
+  <tabstop>comboBox_16</tabstop>
+  <tabstop>comboBox_17</tabstop>
+  <tabstop>comboBox_18</tabstop>
+  <tabstop>comboBox_19</tabstop>
+  <tabstop>comboBox_20</tabstop>
+  <tabstop>comboBox_21</tabstop>
+  <tabstop>comboBox_22</tabstop>
+  <tabstop>comboBox_23</tabstop>
+  <tabstop>comboBox_24</tabstop>
+  <tabstop>comboBox_25</tabstop>
+  <tabstop>comboBox_26</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>radioButton</tabstop>
+  <tabstop>radioButton_2</tabstop>
+  <tabstop>comboBox_27</tabstop>
+  <tabstop>comboBox_28</tabstop>
+  <tabstop>comboBox_29</tabstop>
+  <tabstop>comboBox_30</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

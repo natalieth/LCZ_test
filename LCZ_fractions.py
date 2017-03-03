@@ -46,12 +46,12 @@ def LCZ_fractions(lc_grid,dlg):
             break
         bzh[l] = float(dlg.tableWidget.item(7,l).text())*lczfrac[l] 
         vzh[l] = float(dlg.tableWidget.item(8,l).text())*lczfrac[l]
-        bzhd[l] = float(dlg.tableWidget.item(9,l).text())*lczfrac[l] 
-        vzhd[l] = float(dlg.tableWidget.item(10,l).text())*lczfrac[l]
-        bzhm[l] = float(dlg.tableWidget.item(11,l).text())*lczfrac[l] 
-        vzhm[l] = float(dlg.tableWidget.item(12,l).text())*lczfrac[l]
-        blf[l] = float(dlg.tableWidget.item(13,l).text())*lczfrac[l] 
-        vlf[l] = float(dlg.tableWidget.item(14,l).text())*lczfrac[l]
+        bzhd[l] = float(dlg.tableWidget.item(11,l).text())*lczfrac[l] 
+        vzhd[l] = float(dlg.tableWidget.item(12,l).text())*lczfrac[l]
+        bzhm[l] = float(dlg.tableWidget.item(13,l).text())*lczfrac[l] 
+        vzhm[l] = float(dlg.tableWidget.item(14,l).text())*lczfrac[l]
+        blf[l] = float(dlg.tableWidget.item(9,l).text())*lczfrac[l] 
+        vlf[l] = float(dlg.tableWidget.item(10,l).text())*lczfrac[l]
         
         pavedf[l] = pavedx*lczfrac[l]
         grassf[l] = grassx*lczfrac[l]
