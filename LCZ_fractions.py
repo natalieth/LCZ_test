@@ -86,11 +86,11 @@ def LCZ_fractions(lc_grid,dlg):
     veg_aero_all[0,5] = -9999
     veg_aero_all[0,6] = -9999    
     
-    # replace all nan's to -9999
-    lc_frac_all = np.where(np.isnan(lc_frac_all),-9999,lc_frac_all)
-    bui_aero_all = np.where(np.isnan(bui_aero_all),-9999,bui_aero_all)
-    veg_aero_all = np.where(np.isnan(veg_aero_all),-9999,veg_aero_all)
-    
+#    # replace all nan's to -9999
+#    lc_frac_all = np.where(np.isnan(lc_frac_all),-9999,lc_frac_all)
+#    bui_aero_all = np.where(np.isnan(bui_aero_all),-9999,bui_aero_all)
+#    veg_aero_all = np.where(np.isnan(veg_aero_all),-9999,veg_aero_all)
+#    
     lczfractions = {'lcz_frac': lczfrac,'lc_frac_all': lc_frac_all  ,  'bui_aero': bui_aero_all, 'veg_aero': veg_aero_all }
     
     return lczfractions
